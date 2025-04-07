@@ -26,7 +26,7 @@ def predict_report(request):
 
         fastapi_urls = [
             'http://localhost:8001/predict_proba',
-            'https://jaki-fastapi.up.railway.app/predict_proba',
+            'https://jaki-reports-ai.up.railway.app/predict_proba',
         ]
 
         for url in fastapi_urls:
