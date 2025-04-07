@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Report
+from django.shortcuts import render
 
 @csrf_exempt
 def predict_report(request):
@@ -54,3 +55,8 @@ def predict_report(request):
         })
 
     return JsonResponse({"error": "Invalid method"}, status=400)
+
+
+def predict_form(request):
+    return render(request, 'reports/predict.html')
+
