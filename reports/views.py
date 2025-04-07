@@ -58,5 +58,5 @@ def predict_report(request):
 
 
 def predict_form(request):
-    return render(request, 'reports/predict.html')
+    return render(request, 'predict.html')
 

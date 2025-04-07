@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Prediksi Laporan{% endblock %}
+
+{% block content %}
+<section class="max-w-xl mx-auto mt-10 px-4">
+  <h2 class="text-2xl font-bold mb-4">Coba Prediksi Laporan</h2>
+  <form id="predict-form" class="space-y-4">
+    <textarea name="content" id="content" rows="5" class="w-full border p-2 rounded" placeholder="Tulis laporan masyarakat..."></textarea>
+    
+    <input type="text" name="category" id="category" class="w-full border p-2 rounded" placeholder="Kategori (opsional)">
+
+    <input type="datetime-local" name="createdAt" id="createdAt" class="w-full border p-2 rounded">
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Prediksi</button>
+  </form>
+
+  <div id="result" class="mt-6 hidden">
+    <h3 class="font-bold text-lg mb-2">Hasil Prediksi:</h3>
+    <p><strong>Instansi:</strong> <span id="prediction-label"></span></p>
+    <p><strong>Confidence:</strong> <span id="prediction-confidence"></span></p>
+  </div>
+</section>
+
+<script>
+document.getElementById("predict-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const content = document.getElementById("content").value;
+  const category = document.getElementById("category").value || "";
+  const createdAt = document.getElementById("createdAt").value || new Date().toISOString();
+
+  const response = await fetch("/api/predict/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content,
+      category,
+      createdAt,
+      lat: -6.2,
+      lng: 106.8,
+      is_privacy: false
+    })
+  });
+
+  const data = await response.json();
+
+  if (data.prediction) {
+    document.getElementById("prediction-label").innerText = data.prediction;
+    document.getElementById("prediction-confidence").innerText = `${data.confidence * 100}%`;
+    document.getElementById("result").classList.remove("hidden");
+  } else {
+    alert("Gagal memprediksi.");
+  }
+});
+</script>
+{% endblock %}
