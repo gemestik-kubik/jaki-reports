@@ -35,22 +35,22 @@ def predict_report(request):
         top_confidence = probs[top_label]
 
         # Simpan ke database
-        report = Report.objects.create(
-            code=f"JK{uuid.uuid4().hex[:10].upper()}",
-            content=content,
-            category_name=category,
-            is_privacy=data.get('is_privacy', False),
-            latitude=data.get('lat'),
-            longitude=data.get('lng'),
-            predicted_zone_name=top_label,
-            confidence_score=top_confidence,
-        )
+        # report = Report.objects.create(
+        #     code=f"JK{uuid.uuid4().hex[:10].upper()}",
+        #     content=content,
+        #     category_name=category,
+        #     is_privacy=data.get('is_privacy', False),
+        #     latitude=data.get('lat'),
+        #     longitude=data.get('lng'),
+        #     predicted_zone_name=top_label,
+        #     confidence_score=top_confidence,
+        # )
 
         return JsonResponse({
             "status": "success",
             "prediction": top_label,
             "confidence": top_confidence,
-            "report_id": str(report.id),
+            "report_id": "placeholder",#str(report.id),
             "probabilities": probs
         })
 
