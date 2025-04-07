@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JAKI Report Classifier</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-    <h1 class="text-4xl font-bold text-gray-800 mb-4">Solusi AI untuk Laporan Masyarakat Jakarta</h1>
-    <p class="text-lg text-gray-600 max-w-xl mb-6">
-      Mempercepat tindak lanjut laporan warga menggunakan model berbasis Transformer dan pembelajaran berkelanjutan.
-    </p>
-    <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
-      Coba Klasifikasi
-    </a>
-  </section>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Beranda | JAKI Classifier{% endblock %}
+
+{% block content %}
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+  <h1 class="text-4xl font-bold text-gray-800 mb-4">Solusi AI untuk Laporan Masyarakat Jakarta</h1>
+  <p class="text-lg text-gray-600 max-w-xl mb-6">
+    Mempercepat tindak lanjut laporan warga menggunakan model berbasis Transformer dan pembelajaran berkelanjutan.
+  </p>
+  <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
+    Coba Klasifikasi
+  </a>
+</section>
+{% endblock %}
