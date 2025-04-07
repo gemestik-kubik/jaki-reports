@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --jaki-blue: #2563EB;   /* Tailwind blue-600 */
+  --jaki-green: #10B981;  /* Tailwind emerald-500 */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #111827; /* gray-900 */
+  color: #F9FAFB; /* gray-50 */
+}
+
+a {
+  color: var(--jaki-blue);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Utility text colors */
+.text-jaki-blue {
+  color: var(--jaki-blue);
+}
+.text-jaki-green {
+  color: var(--jaki-green);
+}
+
+/* Background utilities */
+.bg-jaki-blue {
+  background-color: var(--jaki-blue);
+}
+.bg-jaki-green {
+  background-color: var(--jaki-green);
+}
+
+/* Reusable button style */
+.button-primary {
+  @apply text-white bg-jaki-green hover:bg-jaki-blue px-5 py-2 rounded-md font-semibold transition;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}

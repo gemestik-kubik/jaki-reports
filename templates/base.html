@@ -1,32 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}JAKI Classifier{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/globals.css' %}">
 </head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+<body class="bg-gray-900 text-white font-sans leading-normal tracking-normal flex flex-col min-h-screen">
 
   <!-- Navbar -->
-  <nav class="bg-white shadow p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="/" class="text-xl font-bold text-blue-600">JAKI Classifier</a>
-      <div class="space-x-4">
-        <a href="/" class="text-gray-700 hover:text-blue-600">Beranda</a>
-        <a href="#" class="text-gray-700 hover:text-blue-600">Playground</a>
-        <a href="#" class="text-gray-700 hover:text-blue-600">Paper</a>
+  <nav class="bg-gray-800 shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <a href="/" class="text-xl font-bold text-white hover:text-jaki-green transition">JAKI Classifier</a>
+      <div class="space-x-4 text-sm font-medium">
+        <a href="/" class="text-gray-300 hover:text-white">Beranda</a>
+        <a href="#playground" class="text-gray-300 hover:text-white">Playground</a>
+        <a href="/static/paper.pdf" class="text-gray-300 hover:text-white">Paper</a>
       </div>
     </div>
   </nav>
 
-  <!-- Content -->
+  <!-- Main -->
   <main class="flex-grow">
     {% block content %}{% endblock %}
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t mt-10 p-4 text-center text-sm text-gray-500">
-    © 2025 Faiz Assabil Firdaus. All rights reserved.
+  <footer class="bg-gray-800 border-t border-gray-700 p-4 text-center text-sm text-gray-400">
+    © 2025 Gemastik Kubik. All rights reserved.
   </footer>
 
 </body>
