@@ -2,58 +2,96 @@
 {% block title %}Beranda | JAKI Classifier{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="h-screen bg-gray-900 text-white flex items-center justify-center text-center px-6">
+
+<!-- Hero -->
+<section class="h-screen bg-[#0f172a] text-white flex items-center justify-center text-center px-6">
   <div>
-    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Transformasi Penanganan Laporan Warga Jakarta</h1>
-    <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">Teknologi AI kami hadir untuk mempercepat solusi nyata bagi masyarakat.</p>
+    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Solusi AI untuk Jakarta Lebih Responsif</h1>
+    <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8">Model klasifikasi canggih berbasis IndoBERTweet siap mendukung kecepatan respon laporan warga.</p>
     <a href="#playground" class="bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition shadow-lg">Coba Sekarang</a>
   </div>
 </section>
 
-<!-- Why Important Section -->
-<section class="h-screen bg-[#0f172a] text-white flex items-center justify-center px-6">
+<!-- Informasi -->
+<section class="h-screen bg-[#1e293b] text-white flex items-center justify-center px-6">
   <div class="max-w-4xl text-center">
-    <h2 class="text-3xl font-bold mb-10">Kenapa Proyek Ini Layak Diperjuangkan?</h2>
-    <p class="text-md text-gray-400 mb-8">Kami percaya bahwa setiap laporan warga adalah suara yang layak didengar dan ditindaklanjuti dengan cepat.</p>
+    <h2 class="text-3xl font-bold mb-6">Mengapa Ini Penting?</h2>
+    <p class="text-md text-gray-300 mb-10">Setiap laporan warga adalah prioritas. AI membantu memilah dengan cepat dan tepat.</p>
     <div class="flex space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth justify-center">
       <div class="min-w-[300px] max-w-sm snap-center bg-gray-800 p-6 rounded-lg shadow-md flex-shrink-0">
-        <h3 class="text-xl font-semibold mb-2">🎯 Permasalahan Layanan</h3>
-        <p class="text-gray-300 text-sm">Birokrasi lambat dan misklasifikasi sering menghambat solusi tepat waktu.</p>
+        <h3 class="text-xl font-semibold mb-2">🎯 Masalah Klasik</h3>
+        <p class="text-gray-300 text-sm">Misklasifikasi dan lambatnya birokrasi menjadi penghambat utama.</p>
       </div>
       <div class="min-w-[300px] max-w-sm snap-center bg-gray-800 p-6 rounded-lg shadow-md flex-shrink-0">
-        <h3 class="text-xl font-semibold mb-2">📱 Data dari JAKI & Review Publik</h3>
-        <p class="text-gray-300 text-sm">Kami menggabungkan data dari aplikasi resmi dan suara warga dari Play Store.</p>
+        <h3 class="text-xl font-semibold mb-2">📱 Data Lapangan</h3>
+        <p class="text-gray-300 text-sm">Kami olah ribuan data dari JAKI dan ulasan masyarakat di Play Store.</p>
       </div>
       <div class="min-w-[300px] max-w-sm snap-center bg-gray-800 p-6 rounded-lg shadow-md flex-shrink-0">
-        <h3 class="text-xl font-semibold mb-2">🧠 AI yang Memahami Bahasa Kita</h3>
-        <p class="text-gray-300 text-sm">IndoBERTweet dilatih untuk memahami konteks bahasa khas warga Jakarta.</p>
+        <h3 class="text-xl font-semibold mb-2">🧠 Teknologi NLP</h3>
+        <p class="text-gray-300 text-sm">Menggunakan IndoBERTweet yang dilatih khusus bahasa informal Indonesia.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Playground Section -->
-<section id="playground" class="h-screen bg-gray-900 text-white flex items-center justify-center px-6">
+<!-- Playground -->
+<section id="playground" class="h-screen bg-[#334155] text-white flex items-center justify-center px-6">
   <div class="max-w-xl w-full">
-    <h2 class="text-3xl font-bold text-center mb-4">🔍 Eksplorasi Langsung</h2>
-    <p class="text-center text-gray-400 mb-6">Uji sistem kami dengan laporan asli. Tulis, kirim, dan lihat hasilnya.</p>
-    <form method="POST" action="{% url 'predict_form' %}" class="space-y-4">
-      {% csrf_token %}
-      <textarea name="content" rows="4" placeholder="Tulis laporan warga di sini..." class="w-full p-3 border rounded-lg bg-gray-800 text-white shadow-sm placeholder-gray-400"></textarea>
-      <input name="category" placeholder="Kategori (opsional)" class="w-full p-3 border rounded-lg bg-gray-800 text-white shadow-sm placeholder-gray-400"/>
-      <input name="createdAt" type="datetime-local" class="w-full p-3 border rounded-lg bg-gray-800 text-white shadow-sm"/>
+    <h2 class="text-3xl font-bold text-center mb-4">🔍 Prediksi Laporanmu Sekarang</h2>
+    <p class="text-center text-gray-300 mb-6">Langsung uji sistem klasifikasi kami tanpa harus berpindah halaman.</p>
+    <form id="predict-form" class="space-y-4">
+      <textarea name="content" id="content" rows="4" placeholder="Tulis laporan masyarakat..." class="w-full p-3 border rounded-lg bg-gray-800 text-white shadow-sm placeholder-gray-400"></textarea>
+      <input name="category" placeholder="Kategori (opsional)" id="category" class="w-full p-3 border rounded-lg bg-gray-800 text-white shadow-sm placeholder-gray-400" />
+      <input name="createdAt" type="datetime-local" id="createdAt" class="w-full p-3 border rounded-lg bg-gray-800 text-white shadow-sm"/>
       <button type="submit" class="bg-indigo-500 text-white px-5 py-2 rounded hover:bg-indigo-600 transition w-full">Prediksi Sekarang</button>
     </form>
+
+    <div id="result" class="mt-6 hidden bg-gray-800 p-4 rounded-lg shadow">
+      <h3 class="font-bold text-lg mb-2">Hasil Prediksi:</h3>
+      <p><strong>Instansi:</strong> <span id="prediction-label"></span></p>
+      <p><strong>Confidence:</strong> <span id="prediction-confidence"></span></p>
+    </div>
   </div>
 </section>
 
-<!-- Paper Section -->
-<section class="h-screen bg-[#0f172a] text-white flex items-center justify-center text-center px-6">
+<!-- Paper -->
+<section class="h-screen bg-[#1e293b] text-white flex items-center justify-center text-center px-6">
   <div>
-    <h2 class="text-3xl font-bold mb-4">📄 Penelitian Kami</h2>
-    <p class="text-gray-400 mb-6">Temukan pendekatan ilmiah dan eksperimen AI yang kami lakukan dalam publikasi ini.</p>
+    <h2 class="text-3xl font-bold mb-4">📄 Dokumentasi Riset</h2>
+    <p class="text-gray-300 mb-6">Pendekatan akademik kami dituangkan dalam publikasi berikut.</p>
     <a href="/static/paper.pdf" class="bg-indigo-500 text-white px-6 py-3 rounded hover:bg-indigo-600 transition">Baca Penelitian</a>
   </div>
 </section>
+
+<script>
+document.getElementById("predict-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const content = document.getElementById("content").value;
+  const category = document.getElementById("category").value || "";
+  const createdAt = document.getElementById("createdAt").value || new Date().toISOString();
+
+  const response = await fetch("/predict/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content,
+      category,
+      createdAt,
+      lat: -6.2,
+      lng: 106.8,
+      is_privacy: false
+    })
+  });
+
+  const data = await response.json();
+
+  if (data.prediction) {
+    document.getElementById("prediction-label").innerText = data.prediction;
+    document.getElementById("prediction-confidence").innerText = `${(data.confidence * 100).toFixed(2)}%`;
+    document.getElementById("result").classList.remove("hidden");
+  } else {
+    alert("Gagal memprediksi.");
+  }
+});
+</script>
 {% endblock %}
