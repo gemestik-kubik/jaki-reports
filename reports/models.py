@@ -4,7 +4,8 @@ from django.db import models
 class Report(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(max_length=20, unique=True)
-    
+    image_url = models.URLField(blank=True, null=True)
+
     content = models.TextField()
     category_name = models.CharField(max_length=100, blank=True, null=True)
     is_privacy = models.BooleanField(default=False)
